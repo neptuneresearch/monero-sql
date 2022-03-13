@@ -8,7 +8,7 @@ CREATE MATERIALIZED VIEW tx_input_list_rct_count_tx AS (
 		-- "per tx" keys
 		GROUP BY block_height, tx_index, tx_hash 
 	)
-	SELECT SUM(one.n) AS n_tx
+	SELECT COUNT(one.n) AS n_tx
 	FROM one_per_tx one
 ) WITH NO DATA;
 
