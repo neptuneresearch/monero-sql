@@ -1,6 +1,5 @@
 -- Count transactions in current ring-membership-sql data
--- Runtime: 3m40s
-CREATE VIEW tx_input_list_rct_count_tx AS
+CREATE MATERIALIZED VIEW tx_input_list_rct_count_tx AS (
 	WITH one_per_tx AS (
 		SELECT 1 AS n
 		FROM tx_input_list
@@ -9,5 +8,9 @@ CREATE VIEW tx_input_list_rct_count_tx AS
 		-- "per tx" keys
 		GROUP BY block_height, tx_index, tx_hash 
 	)
-	SELECT SUM(one.n)
-	FROM one_per_tx one;
+	SELECT SUM(one.n) AS n_tx
+	FROM one_per_tx one
+) WITH NO DATA;
+
+-- Runtime @H=2576199: 4m53s
+REFRESH MATERIALIZED VIEW tx_input_list_rct_count_tx;
