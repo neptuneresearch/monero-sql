@@ -19,5 +19,5 @@ CREATE MATERIALIZED VIEW tx_input_list_rct_count_tx_version AS (
     ORDER BY V0."height", V0."height"
 ) WITH NO DATA;
 
--- Runtime: 5m
+-- Runtime @H=2576199: 7m55s
 REFRESH MATERIALIZED VIEW tx_input_list_rct_count_tx_version;
