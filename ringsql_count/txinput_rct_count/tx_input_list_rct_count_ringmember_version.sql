@@ -1,5 +1,5 @@
 -- Count transaction inputs, per HF version, in current ring-membership-sql data
--- Requires: tx_input_list_rct_count_ringmember_version
+-- Requires: tx_input_list_rct_count_ringmember
 CREATE MATERIALIZED VIEW tx_input_list_rct_count_ringmember_version AS (
     SELECT
         V0."version" AS "version",
